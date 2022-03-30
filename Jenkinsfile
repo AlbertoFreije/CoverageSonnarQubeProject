@@ -17,6 +17,12 @@ pipeline {
                         -Dsonar.host.url=http://192.168.56.10:9000 \
                         -Dsonar.login=992f76e8559c7d4b133a40ded7d396cc4d1ad003"
                     }
+                    timeout(1){
+                        def qg = waitForQualityGate("SonarQube")
+                        if(qg.status != 'OK'){
+                            error "No se pudo pasar la verificación del umbral de calidad del código de Sonarqube, ¡modifíquelo a tiempo! error: $ {qg.status}"
+                        }
+                    }
                 }
 
             }
