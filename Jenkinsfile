@@ -17,6 +17,7 @@ pipeline {
                         -Dsonar.host.url=http://192.168.56.10:9000 \
                         -Dsonar.login=992f76e8559c7d4b133a40ded7d396cc4d1ad003"
                     }
+                }
             }
           }
           stage ('Build') {
