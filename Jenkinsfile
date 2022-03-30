@@ -23,7 +23,7 @@ pipeline {
           }
           stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                sh 'mvn -Dmaven.test.failure.ignore=true -Dfile=/initial install' 
                 sh 'mvn test -e'
             } 
         }
