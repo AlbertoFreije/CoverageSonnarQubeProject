@@ -19,9 +19,6 @@ pipeline {
                     }
                     
                     def qg = waitForQualityGate("SonarQube")
-                    if(qg.status != 'OK'){
-                        error "No se pudo pasar la verificación del umbral de calidad del código de Sonarqube, ¡modifíquelo a tiempo!"
-                    }
                     
                 }
 
