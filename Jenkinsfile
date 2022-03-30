@@ -8,6 +8,7 @@ pipeline {
           stage("Code Quality Check via SonarQube") {
             steps {
                 script{
+                    timeout(5){
                     def scannerHome = tool 'sonarqube';
                     withSonarQubeEnv("SonarQube") {
                         sh "${tool("sonarqube")}/bin/sonar-scanner \
@@ -19,6 +20,7 @@ pipeline {
                     }
                     
                     def qg = waitForQualityGate("SonarQube")
+                    }
                     
                 }
 
