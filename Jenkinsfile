@@ -29,7 +29,13 @@ pipeline {
           stage("Quality Gate") {
             steps {
               timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: false
+                  sh "${tool("sonarqube")}/bin/sonar-scanner \
+                        -Dsonar.projectKey=gs-maven \
+                        -Dsonar.sources=. \
+                        -Dsonar.css.node=. \
+                        -Dsonar.host.url=http://192.168.56.10:9000 \
+                        -Dsonar.login=992f76e8559c7d4b133a40ded7d396cc4d1ad003"
+                  waitForQualityGate abortPipeline: false
               }
             }
           }
