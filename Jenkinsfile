@@ -23,7 +23,8 @@ pipeline {
           }
           stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true -Dfile=/initial install' 
+
+                sh 'mvn - f (/var/jenkins_home/workspace/CoverageProject/initial) -Dmaven.test.failure.ignore=true install' 
                 sh 'mvn test -e'
             } 
         }
