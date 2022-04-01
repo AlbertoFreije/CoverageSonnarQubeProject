@@ -31,7 +31,7 @@ pipeline {
                   script{
                       withSonarQubeEnv("SonarQube") {
                         timeout(time: 1, unit: 'HOURS') {
-                        def qg = waitForQualityGate(credentialsId: '992f76e8559c7d4b133a40ded7d396cc4d1ad003')
+                        def qg = waitForQualityGate(webhookSecretId: '992f76e8559c7d4b133a40ded7d396cc4d1ad003')
                         if (qg.status != 'OK') {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
                         }
