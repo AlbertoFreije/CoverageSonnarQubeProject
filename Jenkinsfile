@@ -26,7 +26,7 @@ pipeline {
           stage("Quality Gate"){
               steps{
                   script{
-                      withCredentials(CRED) { 
+                      withCredentials([string(credentials('sonarqube'))]) { 
                         withSonarQubeEnv("SonarQube") {
                             timeout(time: 15, unit: 'MINUTES') {
                             withCredentials([file(credentialsId: 'sonarqube', variable: 'FILE')]) {
