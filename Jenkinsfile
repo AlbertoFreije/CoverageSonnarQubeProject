@@ -35,10 +35,7 @@ pipeline {
                         while(true){
                             sh "sleep 2"
                             def url="http://192.168.56.10:80/job/${env.JOB_NAME.replaceAll('/','/job/')}/lastBuild/consoleText";
-                            def sonarId = sh script: "wget -qO- --content-on-error --no-proxy --auth-no-challenge --http-user=${CRED_USR} --http-password=${CRED_PSW} '${url}'  | grep 'More about the report processing' | head -n1 ",returnStdout:true
-                            sonarId = sonarId.substring(sonarId.indexOf("=")+1)
-                            echo "sonarId ${sonarId}"
-                            def sonarUrl = "http://192.168.56.10:80/sonarqube-webhook/api/ce/task?id=${sonarId}"
+                            def sonarUrl = "http://192.168.56.10:80/sonarqube-webhook/api/ce/task?id=AX_DpjoCs_A7_pIG8NVK"
                             def sonarStatus = sh script: "wget -qO- '${sonarUrl}' --no-proxy --content-on-error | jq -r '.task' | jq -r '.status' ",returnStdout:true
                             echo "Sonar status ... ${sonarStatus}"
                             if(sonarStatus.trim() == "SUCCESS"){
