@@ -23,16 +23,10 @@ pipeline {
                 }
             }
           }
-          stage ('Build') {
-            steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
-                sh 'mvn test -e'
-            } 
-          }
           stage("Quality Gate"){
               steps{
                   script{
-                      withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET TEXT')]) { 
+                      withCredentials(CRED) { 
                         withSonarQubeEnv("SonarQube") {
                             timeout(time: 15, unit: 'MINUTES') {
                             withCredentials([file(credentialsId: 'sonarqube', variable: 'FILE')]) {
@@ -50,6 +44,12 @@ pipeline {
             }
           
         }
+          stage ('Build') {
+            steps {
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                sh 'mvn test -e'
+            } 
+          }
     
     }
 }
