@@ -29,12 +29,12 @@ pipeline {
                       withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET')]) { 
                         withSonarQubeEnv("SonarQube") {
                             timeout(time: 15, unit: 'MINUTES') {
-                            withCredentials([file(credentialsId: 'sonarqube', variable: 'FILE')]) {
+                            
                             def qg = waitForQualityGate(webhookSecretId: '992f76e8559c7d4b133a40ded7d396cc4d1ad003')
                             if (qg.status != 'OK') {
                                 error "Pipeline aborted due to quality gate failure: ${qg.status}"
                             }
-                            }
+                            
                         }
 
                         }
