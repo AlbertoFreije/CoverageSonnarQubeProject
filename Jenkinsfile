@@ -33,7 +33,6 @@ pipeline {
               steps{
                   script{
                       withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET')]) { 
-
                         withSonarQubeEnv("SonarQube") {
                             timeout(time: 15, unit: 'MINUTES') {
                             withCredentials([file(credentialsId: 'sonarqube', variable: 'FILE')]) {
@@ -50,6 +49,7 @@ pipeline {
                 }
             }
           
-    }
+        }
     
+    }
 }
