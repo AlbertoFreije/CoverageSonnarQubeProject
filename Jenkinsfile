@@ -29,20 +29,28 @@ pipeline {
                 sh 'mvn test -e'
             } 
           }
-          stage("Quality Gate"){
-              steps{
-                  script{
-                      withSonarQubeEnv("SonarQube") {
-                        timeout(time: 15, unit: 'MINUTES') {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+          
+         stage("Quality Gate") {
+            steps {
+                script {
+                        while(true){
+                            sh "sleep 2"
+                            def url="http://192.168.56.10:80/job/${env.JOB_NAME.replaceAll('/','/job/')}/lastBuild/consoleText";
+                            def sonarUrl = "http://192.168.56.10/sonarqube-webhook/api/ce/task?id=AX_D9rVEs_A7_pIG8NVN"
+                            def sonarStatus = sh script: "wget -qO- '${sonarUrl}' --no-proxy --content-on-error | jq -r '.task' | jq -r '.status' ",returnStdout:true
+                            echo "Sonar status ... ${sonarStatus}"
+                            if(sonarStatus.trim() == "SUCCESS"){
+                                echo "BREAK";
+                                break;
+                            }
+                            if(sonarStatus.trim() == "FAILED "){
+                                echo "FAILED"
+                                currentBuild.result = 'FAILED'
+                                break;
+                            }
                         }
-                        }
-                      }
-
-                  }
-              }
+                    }
+                }
             }
           
     }
