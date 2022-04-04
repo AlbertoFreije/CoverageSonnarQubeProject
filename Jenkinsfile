@@ -10,7 +10,7 @@ pipeline {
                 script{
                     def scannerHome = tool 'SONARQUBE';
                     withSonarQubeEnv("SonarQube") {
-                        sh "${tool("sonarqube")}/bin/sonar-scanner \
+                        sh "${tool("SONARQUBE")}/bin/sonar-scanner \
                         -Dsonar.projectKey=gs-maven \
                         -Dsonar.sources=. \
                         -Dsonar.css.node=. \
