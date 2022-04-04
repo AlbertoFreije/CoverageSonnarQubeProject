@@ -34,7 +34,7 @@ pipeline {
                             sh 'env'
                             timeout(time: 15, unit: 'MINUTES') {
                             retry(3){
-                                def qg = waitForQualityGate()
+                                def qg = waitForQualityGate(credentialsId: 'sonarqube')
                                 if (qg.status != 'OK') {
                                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
                                 }
