@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment { 
-        CRED = credentials('sonarqube') 
-    }
     tools { 
         maven 'Maven 3.3.9' 
         jdk 'jdk8' 
@@ -11,7 +8,7 @@ pipeline {
           stage("Code Quality Check via SonarQube") {
             steps {
                 script{
-                    def scannerHome = tool 'sonarqube';
+                    def scannerHome = tool 'SONARQUBE';
                     withSonarQubeEnv("SonarQube") {
                         sh "${tool("sonarqube")}/bin/sonar-scanner \
                         -Dsonar.projectKey=gs-maven \
