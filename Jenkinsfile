@@ -21,6 +21,7 @@ pipeline {
                         -Dsonar.login=992f76e8559c7d4b133a40ded7d396cc4d1ad003"
                     }
                 }
+                sh 'sleep 10'
             }
           }
           stage("Quality Gate"){
