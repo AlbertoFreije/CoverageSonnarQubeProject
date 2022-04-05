@@ -13,8 +13,8 @@ pipeline {
 
                         withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET')]) { 
                             withSonarQubeEnv('SonarQube') {
-							    sh "mvn sonar:sonar"
-					    }
+							    sh "mvn sonar:sonar -Dsonar.login=992f76e8559c7d4b133a40ded7d396cc4d1ad003"
+					        }
                             
                         }
 						
