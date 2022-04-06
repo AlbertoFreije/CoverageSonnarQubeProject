@@ -22,8 +22,9 @@ pipeline {
                                         -Dsonar.login=992f76e8559c7d4b133a40ded7d396cc4d1ad003"
                                         sh 'env'
                                 }
+                            }
 
-                            timeout(time: 5, unit: 'MINUTES') {
+                                timeout(time: 5, unit: 'MINUTES') {
                                     script{
                                         sh 'sleep 100'
                                         withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET')]) { 
