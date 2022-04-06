@@ -47,7 +47,7 @@ pipeline {
 					steps{
 					
 						sh "mvn clean package"
-                        sh "mv target/*.war target/Calculadora.war"
+                        sh "mv target/*.war target/calculadora.war"
 					}
 				
 				}
