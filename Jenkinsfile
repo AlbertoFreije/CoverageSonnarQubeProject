@@ -25,19 +25,19 @@ pipeline {
                                 }
                             }
 
-                                timeout(time: 5, unit: 'MINUTES') {
-                                    script{
-                                        sh 'sleep 100'
+                            //     timeout(time: 5, unit: 'MINUTES') {
+                            //         script{
+                            //             sh 'sleep 100'
         
-                                        withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET')]) { 
-                                                def qg = waitForQualityGate("SonarQube");
-                                                if (qg.status != 'OK') {
-                                                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                                                }
-                                        }
+                            //             withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET')]) { 
+                            //                     def qg = waitForQualityGate();
+                            //                     if (qg.status != 'OK') {
+                            //                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                            //                     }
+                            //             }
                                         
-                                    }
-                            }
+                            //         }
+                            // }
 					
 					}
 				
@@ -47,9 +47,16 @@ pipeline {
 					steps{
 					
 						sh "mvn clean package"
+                        sh "mv target/*.war target/myweb.war"
 					}
 				
 				}
+                stage("deploy-Tomcat"){
+                    steps{
+                        script{
+                                deploy adapters: [tomcat9(credentialsId: 'war-deployer', path: '', url: 'http://192.168.56.10:8081')], contextPath: 'hello', war: '**/*.war'
+                    }       
+                }
 			
 			}
 		
