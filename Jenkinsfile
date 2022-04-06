@@ -28,8 +28,7 @@ pipeline {
                                 timeout(time: 5, unit: 'MINUTES') {
                                     script{
                                         sh 'sleep 100'
-                                        def scannerHome = tool 'SONARQUBE';
-
+        
                                         withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET')]) { 
                                                 def qg = waitForQualityGate("SonarQube"){
                                                     sh "${tool("SONARQUBE")}/bin/sonar-scanner \
