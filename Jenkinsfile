@@ -21,7 +21,6 @@ pipeline {
                                  sh "${scannerHome}/bin/sonar-scanner \
                                  -Dsonar.projectKey=gs-maven \
                                  -Dsonar.sources=${PROJECT_ROOT}/src/main \
-                                 
                                  -Dsonar.language=java \
                                  -Dsonar.java.binaries=.${PROJECT_ROOT}/target/classes \
                                  -Dsonar.java.test.binaries=${PROJECT_ROOT}/src/test/java \
