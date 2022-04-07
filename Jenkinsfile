@@ -19,8 +19,7 @@ pipeline {
                     steps {
                         withSonarQubeEnv('sonarqube') {
                                  sh "${scannerHome}/bin/sonar-scanner \
-                                 -Dsonar.projectKey=practicaJava:Test \
-                                 -Dsonar.projectName=practicaJava \
+                                 -Dsonar.projectKey=gs-maven \
                                  -Dsonar.sources=${PROJECT_ROOT}/src/main \
                                  -Dsonar.language=java \
                                  -Dsonar.java.binaries=./${PROJECT_ROOT}/target/classes \
