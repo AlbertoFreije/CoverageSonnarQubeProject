@@ -5,7 +5,7 @@ pipeline {
         jdk 'jdk8' 
     }
     environment {
-        PROJECT_ROOT = tool 'sonar-scanner'
+        PROJECT_ROOT = "CoverageSonnarQubeProject"
     }
     stages {
         
@@ -14,7 +14,7 @@ pipeline {
 				
                 stage("scan"){
                     environment {
-                        scannerHome = "CoverageSonnarQubeProject"
+                        scannerHome = tool 'sonar-scanner'
                     }
                     steps {
                         withSonarQubeEnv('sonarqube') {
@@ -22,7 +22,8 @@ pipeline {
                                   -Dsonar.projectKey=gs-maven \
                                   -Dsonar.sources=. \
                                   -Dsonar.css.node=. \
-                                  -Dsonar.host.url=http://192.168.56.10:9000"
+                                  -Dsonar.host.url=http://192.168.56.10:9000 \
+                                  -Dsonar.login=992f76e8559c7d4b133a40ded7d396cc4d1ad003"
                         }
                     
 
