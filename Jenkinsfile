@@ -8,40 +8,30 @@ pipeline {
         
         stage('sonar and maven'){
 			parallel{
-				stage('Sonar Report'){
-					steps{
-
-                            script{
-
-                                def scannerHome = tool 'SONARQUBE';
-                                withSonarQubeEnv("SonarQube") {
-                                    sh "${tool("SONARQUBE")}/bin/sonar-scanner \
-                                        -Dsonar.projectKey=gs-maven \
-                                        -Dsonar.sources=. \
-                                        -Dsonar.css.node=. \
-                                        -Dsonar.host.url=http://192.168.56.10:9000 \
-                                        -Dsonar.login=992f76e8559c7d4b133a40ded7d396cc4d1ad003"
-                                       sh 'sleep 10'
-                                }
-                            }
-
-                                timeout(time: 5, unit: 'MINUTES') {
-                                    script{
-                                        sh 'sleep 100'
-        
-                                        withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET')]) { 
-                                                def qg = waitForQualityGate();
-                                                if (qg.status != 'OK') {
-                                                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                                                }
-                                        }
-                                        
-                                    }
-                            }
-					
-					}
 				
-				}
+                stage("scan"){
+                    environment {
+                        scannerHome = tool 'sonar-scanner'
+                    }
+                    steps {
+                        withSonarQubeEnv('sonarqube') {
+                                 sh "${scannerHome}/bin/sonar-scanner \
+                                 -Dsonar.projectKey=practicaJava:Test \
+                                 -Dsonar.projectName=practicaJava \
+                                 -Dsonar.projectVersion=0.${BUILD_NUMBER} \
+                                 -Dsonar.sources=${PROJECT_ROOT}/src/main \
+                                 -Dsonar.language=java \
+                                 -Dsonar.java.binaries=./${PROJECT_ROOT}/target/classes \
+                                 -Dsonar.java.test.binaries=${PROJECT_ROOT}/src/test/java \
+                                -Dsonar.junit.reportPaths=./${PROJECT_ROOT}/target/surefire-reports \
+                               -Dsonar.coverage.jacoco.xmlReportPaths=./${PROJECT_ROOT}/target/site/jacoco/jacoco.xml \
+                               -Dsonar.java.coveragePlugin=jacoco"
+                        }
+                    }
+                    timeout(time: 10, unit: 'MINUTES') {
+                        waitForQualityGate abortPipeline: qualityGateValidation(waitForQualityGate())
+                    }
+                }
 				
 				stage('Maven Build'){
 					steps{
