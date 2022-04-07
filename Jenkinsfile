@@ -25,19 +25,19 @@ pipeline {
                                 }
                             }
 
-                            //     timeout(time: 5, unit: 'MINUTES') {
-                            //         script{
-                            //             sh 'sleep 100'
+                                timeout(time: 5, unit: 'MINUTES') {
+                                    script{
+                                        sh 'sleep 100'
         
-                            //             withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET')]) { 
-                            //                     def qg = waitForQualityGate();
-                            //                     if (qg.status != 'OK') {
-                            //                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                            //                     }
-                            //             }
+                                        withCredentials([string(credentialsId: 'sonarqube', variable: 'SECRET')]) { 
+                                                def qg = waitForQualityGate();
+                                                if (qg.status != 'OK') {
+                                                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                                                }
+                                        }
                                         
-                            //         }
-                            // }
+                                    }
+                            }
 					
 					}
 				
