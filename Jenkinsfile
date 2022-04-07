@@ -4,6 +4,9 @@ pipeline {
         maven 'Maven 3.3.9' 
         jdk 'jdk8' 
     }
+    environment {
+        PROJECT_ROOT = tool 'sonar-scanner'
+    }
     stages {
         
         stage('sonar and maven'){
@@ -11,14 +14,13 @@ pipeline {
 				
                 stage("scan"){
                     environment {
-                        scannerHome = tool 'sonar-scanner'
+                        scannerHome = "CoverageSonnarQubeProject"
                     }
                     steps {
                         withSonarQubeEnv('sonarqube') {
                                  sh "${scannerHome}/bin/sonar-scanner \
                                  -Dsonar.projectKey=practicaJava:Test \
                                  -Dsonar.projectName=practicaJava \
-                                 -Dsonar.projectVersion=0.${BUILD_NUMBER} \
                                  -Dsonar.sources=${PROJECT_ROOT}/src/main \
                                  -Dsonar.language=java \
                                  -Dsonar.java.binaries=./${PROJECT_ROOT}/target/classes \
