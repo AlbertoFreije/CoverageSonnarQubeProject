@@ -19,11 +19,14 @@ pipeline {
                     steps {
                         withSonarQubeEnv('sonarqube') {
                                  sh "${scannerHome}/bin/sonar-scanner \
-                                  -Dsonar.projectKey=gs-maven \
-                                  -Dsonar.sources=. \
-                                  -Dsonar.css.node=. \
-                                  -Dsonar.host.url=http://192.168.56.10:9000 \
-                                  -Dsonar.login=992f76e8559c7d4b133a40ded7d396cc4d1ad003"
+                                  -Dsonar.projectKey=gs-maven \ 
+                                  -Dsonar.sources=${PROJECT_ROOT}/src/main \
+                                  -Dsonar.language=java \
+                                  -Dsonar.java.binaries=./${PROJECT_ROOT}/target/classes \
+                                  -Dsonar.java.test.binaries=${PROJECT_ROOT}/src/test/java \
+                                  -Dsonar.junit.reportPaths=./${PROJECT_ROOT}/target/surefire-reports \
+                                  -Dsonar.coverage.jacoco.xmlReportPaths=./${PROJECT_ROOT}/target/site/jacoco/jacoco.xml \
+                                  -Dsonar.java.coveragePlugin=jacoco"
                         }
                     
 
