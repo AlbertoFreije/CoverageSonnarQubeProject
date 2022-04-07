@@ -4,9 +4,6 @@ pipeline {
         maven 'Maven 3.3.9' 
         jdk 'jdk8' 
     }
-    environment {
-        PROJECT_ROOT = "CoverageProject"
-    }
     stages {
         
         stage('sonar and maven'){
@@ -24,10 +21,10 @@ pipeline {
                                   -Dsonar.login=992f76e8559c7d4b133a40ded7d396cc4d1ad003 \
                                   -Dsonar.sources=/var/jenkins_home/workspace/CoverageProject/src/main \
                                   -Dsonar.language=java \
-                                  -Dsonar.java.binaries=./${PROJECT_ROOT}/target/classes \
-                                  -Dsonar.java.test.binaries=${PROJECT_ROOT}/src/test/java \
-                                  -Dsonar.junit.reportPaths=./${PROJECT_ROOT}/target/surefire-reports \
-                                  -Dsonar.coverage.jacoco.xmlReportPaths=./${PROJECT_ROOT}/target/site/jacoco/jacoco.xml \
+                                  -Dsonar.java.binaries=/var/jenkins_home/workspace/CoverageProject/target/classes \
+                                  -Dsonar.java.test.binaries=/var/jenkins_home/workspace/CoverageProject/src/test/java \
+                                  -Dsonar.junit.reportPaths=/var/jenkins_home/workspace/CoverageProject/target/surefire-reports \
+                                  -Dsonar.coverage.jacoco.xmlReportPaths=/var/jenkins_home/workspace/CoverageProject/target/site/jacoco/jacoco.xml \
                                   -Dsonar.java.coveragePlugin=jacoco"
                         }
                     
