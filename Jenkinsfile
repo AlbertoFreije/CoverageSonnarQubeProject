@@ -27,9 +27,11 @@ pipeline {
                                -Dsonar.coverage.jacoco.xmlReportPaths=./${PROJECT_ROOT}/target/site/jacoco/jacoco.xml \
                                -Dsonar.java.coveragePlugin=jacoco"
                         }
-                    }
+                    
+
                     timeout(time: 10, unit: 'MINUTES') {
                         waitForQualityGate abortPipeline: qualityGateValidation(waitForQualityGate())
+                    }
                     }
                 }
 				
