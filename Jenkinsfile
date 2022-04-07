@@ -5,7 +5,7 @@ pipeline {
         jdk 'jdk8' 
     }
     environment {
-        PROJECT_ROOT = "CoverageSonnarQubeProject"
+        PROJECT_ROOT = "CoverageProject"
     }
     stages {
         
