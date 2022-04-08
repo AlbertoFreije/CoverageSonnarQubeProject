@@ -28,7 +28,9 @@ pipeline {
                                   -Dsonar.java.coveragePlugin=jacoco"
                         }
                     
-
+                    timeout(time: 10, unit: 'MINUTES') {
+                        waitForQualityGate abortPipeline: qualityGateValidation(waitForQualityGate())
+                    }
                     
                     }
                 }
