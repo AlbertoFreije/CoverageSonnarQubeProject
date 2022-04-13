@@ -17,6 +17,18 @@
 		<sonar.language>java</sonar.language>
 	        <docker.image.prefix>app</docker.image.prefix>
 	</properties>
+	<distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <name>Nexus ReleaseRepository</name>
+            <url>http://192.168.56.10:8881/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <name>Nexus SnapshotRepository</name>
+            <url>http://192.168.56.10:8881/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
