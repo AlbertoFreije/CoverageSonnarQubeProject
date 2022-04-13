@@ -19,12 +19,12 @@
 	</properties>
 	<distributionManagement>
 	<repository>
-        <id>nexus-releases</id>
-        <url>http://192.168.56.10:8881/content/repositories/releases</url>
+        <id>maven-releases</id>
+        <url>http://192.168.56.10:8881/repository/maven-releases/</url>
     </repository>
     <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>http://192.168.56.10:8881/nexus/content/repositories/snapshots</url>
+      <id>maven-snapshots</id>
+      <url>http://192.168.56.10:8881/repository/maven-snapshots/</url>
     </snapshotRepository>
 	</distributionManagement>
 	<dependencies>
