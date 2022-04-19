@@ -1,4 +1,7 @@
 @Library('pipeline-library')_
+
+import com.cleverbuilder.SonarVars
+
 pipeline {
     agent any
     tools { 
@@ -12,7 +15,7 @@ pipeline {
 				
                 stage("scan"){
                     environment {
-                        scannerHome = tool 'sonar-scanner'
+                        scannerHome = tool SonarVars.foo
                     }
                     steps {
                         withSonarQubeEnv('sonarqube') {
