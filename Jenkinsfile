@@ -7,7 +7,7 @@ pipeline {
     agent any
     tools { 
         maven GlobalVars.foo
-        jdk 'jdk8' 
+        jdk GlobalVars.foo2
     }
     stages {
         
