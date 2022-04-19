@@ -10,7 +10,6 @@ pipeline {
         jdk GlobalVars.foo2
     }
     stages {
-        
         stage('sonar and maven'){
 			parallel{
 				
@@ -18,24 +17,18 @@ pipeline {
                     environment {
                         scannerHome = tool SonarVars.foo
                     }
-                    steps {
-                        
+                    steps { 
                         sonarQube()
-                    
                     }
                 }
-				
 				stage('Maven Build'){
 					steps{
                         mavenBuild()
 					}
 				
 				}
-			
 			}
-		
 		}	
-
         stage("deploy-Tomcat"){
                     steps{
                         script{
