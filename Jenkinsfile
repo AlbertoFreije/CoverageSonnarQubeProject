@@ -1,11 +1,12 @@
 @Library('pipeline-library')_
 
 import com.cleverbuilder.SonarVars
+import com.cleverbuilder.GlobalVars
 
 pipeline {
     agent any
     tools { 
-        maven 'Maven 3.3.9' 
+        maven GlobalVars.foo
         jdk 'jdk8' 
     }
     stages {
