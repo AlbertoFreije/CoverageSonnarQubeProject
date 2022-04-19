@@ -58,7 +58,7 @@ pipeline {
         stage("deploy-Tomcat"){
                     steps{
                         script{
-                                tomcatDeploy()
+                                tomcatDeploy('war-deployer')
                         }
                     }       
         }
