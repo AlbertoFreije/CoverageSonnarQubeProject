@@ -4,37 +4,37 @@ import com.test.SonarVars
 import com.test.GlobalVars
 import com.test.utils.Constant
 
-println("Pribando esta variable " + Constant.prueba)
+println("Probando esta variable " + Constant.prueba)
 
-// pipeline {
-//     agent any
-//     tools { 
-//         maven GlobalVars.maven
-//         jdk GlobalVars.jdk
-//     }
-//     stages {
-//         stage('sonar and maven'){
-// 			parallel{
+pipeline {
+    agent any
+    tools { 
+        maven GlobalVars.maven
+        jdk GlobalVars.jdk
+    }
+    stages {
+        stage('sonar and maven'){
+			parallel{
 				
-//                 stage("scan"){
-//                     steps { 
-//                         sonarQube()
-//                     }
-//                 }
-// 				stage('Maven Build'){
-// 					steps{
-//                         mavenBuild()
-// 					}
+                stage("scan"){
+                    steps { 
+                        sonarQube()
+                    }
+                }
+				stage('Maven Build'){
+					steps{
+                        mavenBuild()
+					}
 				
-// 				}
-// 			}
-// 		}	
-//         stage("deploy-Tomcat"){
-//                     steps{
-//                         script{
-//                             tomcatDeploy 'war-deployer', 'calculadora'
-//                         }
-//                     }       
-//         }
-//     }
-// }
+				}
+			}
+		}	
+        stage("deploy-Tomcat"){
+                    steps{
+                        script{
+                            tomcatDeploy 'war-deployer', 'calculadora'
+                        }
+                    }       
+        }
+    }
+}
