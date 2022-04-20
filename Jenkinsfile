@@ -2,9 +2,6 @@
 
 import com.test.SonarVars
 import com.test.GlobalVars
-import com.test.utils.Constant
-
-println("Probando esta variable " + Constant.prueba)
 
 pipeline {
     agent any
