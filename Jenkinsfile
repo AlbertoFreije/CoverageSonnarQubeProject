@@ -14,9 +14,6 @@ pipeline {
 			parallel{
 				
                 stage("scan"){
-                    environment {
-                        scannerHome = tool SonarVars.foo
-                    }
                     steps { 
                         sonarQube()
                     }
