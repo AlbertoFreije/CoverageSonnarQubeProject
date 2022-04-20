@@ -1,7 +1,7 @@
 @Library('pipeline-library')_
 
-import com.cleverbuilder.SonarVars
-import com.cleverbuilder.GlobalVars
+import com.test.SonarVars
+import com.test.GlobalVars
 
 pipeline {
     agent any
