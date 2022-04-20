@@ -6,7 +6,7 @@ import com.cleverbuilder.GlobalVars
 pipeline {
     agent any
     tools { 
-        maven GlobalVars.foo
+        maven GlobalVars.maven
         jdk GlobalVars.foo2
     }
     stages {
