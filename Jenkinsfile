@@ -7,7 +7,7 @@ pipeline {
     agent any
     tools { 
         maven GlobalVars.maven
-        jdk GlobalVars.foo2
+        jdk GlobalVars.jdk
     }
     stages {
         stage('sonar and maven'){
