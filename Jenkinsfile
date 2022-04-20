@@ -21,10 +21,12 @@ pipeline {
                         sonarQube()
                     }
                 }
-                stage('Maven Build'){
-                     mavenBuild()
-                }
-               
+				stage('Maven Build'){
+					steps{
+                        mavenBuild()
+					}
+				
+				}
 			}
 		}	
         stage("deploy-Tomcat"){
