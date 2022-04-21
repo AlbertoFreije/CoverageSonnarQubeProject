@@ -9,7 +9,7 @@ pipeline {
         jdk GlobalVars.jdk
     }
     environment {
-        POM_GROUP_ID = readMavenPom().getGroupId()
+        //POM_GROUP_ID = readMavenPom().getGroupId()
     }
     stages {
         stage('sonar and maven'){
