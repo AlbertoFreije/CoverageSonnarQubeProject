@@ -4,13 +4,17 @@ import com.test.GlobalVars
 
 pipeline {
     agent any
+
+    environment {
+       
+    }
+
     tools { 
         maven GlobalVars.maven
         jdk GlobalVars.jdk
     }
-    environment {
-        //POM_GROUP_ID = readMavenPom().getGroupId()
-    }
+    
+   
     stages {
         stage('sonar and maven'){
 			parallel{
