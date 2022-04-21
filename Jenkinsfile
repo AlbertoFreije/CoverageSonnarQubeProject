@@ -1,6 +1,5 @@
 @Library('pipeline-library')_
 
-import com.test.SonarVars
 import com.test.GlobalVars
 
 pipeline {
