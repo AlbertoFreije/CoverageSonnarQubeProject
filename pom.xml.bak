@@ -21,7 +21,6 @@
 	<repository>
         <id>maven-releases</id>
         <url>http://192.168.56.10:8881/repository/maven-releases/</url>
-		<writePolicy>ALLOW_WRITE</writePolicy>
     </repository>
     <snapshotRepository>
       <id>maven-snapshots</id>
