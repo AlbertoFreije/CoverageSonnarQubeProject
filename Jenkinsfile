@@ -25,7 +25,14 @@ pipeline {
 				
 				}
 			}
-		}	
+		}
+        stage("OWASP"){
+                    steps{
+                        script{
+                            dependencyCheck additionalArguments: 'scan="path to scan" --format HTML', odcInstallation: '7.1.0'
+                        }
+                    }       
+        }	
         stage("deploy-Tomcat"){
                     steps{
                         script{
