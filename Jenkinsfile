@@ -30,14 +30,7 @@ pipeline {
                     steps{
                         script{
                             
-                            dependencyCheck additionalArguments: ''' 
-                                -o "./" 
-                                -s "./"
-                                -f "ALL" 
-                                --prettyPrint''', odcInstallation: '7.1.0'
-                                
-                            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-
+                            dependencyCheck additionalArguments: 'scan= **/calculadora-0.1.0.war --format HTML', odcInstallation: '7.1.0'
                         }
                     }       
         }	
