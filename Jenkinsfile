@@ -30,7 +30,7 @@ pipeline {
                     steps{
                         script{
                             
-                            dependencyCheck additionalArguments: 'scan=" export _JAVA_OPTIONS="-Dcom.sun.security.enableAIAcaIssuers=true" && ./gradlew dependencyCheckAnalyze path to scan" --format HTML', odcInstallation: '7.1.0'
+                            dependencyCheck additionalArguments: '-f "HTML, XML,CSV" -s .', odcInstallation: '7.1.0'
                         }
                     }       
         }	
