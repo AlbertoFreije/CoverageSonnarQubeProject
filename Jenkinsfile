@@ -29,8 +29,8 @@ pipeline {
         stage("OWASP"){
                     steps{
                         script{
-                            export _JAVA_OPTIONS="-Dcom.sun.security.enableAIAcaIssuers=true" && ./gradlew dependencyCheckAnalyze
-                            dependencyCheck additionalArguments: 'scan="path to scan" --format HTML', odcInstallation: '7.1.0'
+                            
+                            dependencyCheck additionalArguments: 'scan=" export _JAVA_OPTIONS="-Dcom.sun.security.enableAIAcaIssuers=true" && ./gradlew dependencyCheckAnalyze path to scan" --format HTML', odcInstallation: '7.1.0'
                         }
                     }       
         }	
