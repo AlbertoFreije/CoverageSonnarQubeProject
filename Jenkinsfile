@@ -30,7 +30,14 @@ pipeline {
                     steps{
                         script{
                             
-                            dependencyCheck additionalArguments: '-f "HTML, XML,CSV" -s .', odcInstallation: '7.1.0'
+                            dependencyCheck additionalArguments: ''' 
+                                -o "./" 
+                                -s "./"
+                                -f "ALL" 
+                                --prettyPrint''', odcInstallation: '7.1.0'
+                                
+                            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+
                         }
                     }       
         }	
