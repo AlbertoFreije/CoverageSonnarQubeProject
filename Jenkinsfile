@@ -30,14 +30,7 @@ pipeline {
                     steps{
                         script{
 
-                            dependencyCheck {
-
-                                    scan= '**/*.war'
-    
-                                    cve {
-                                        urlModified = "<<here goes the link to new schema version>>"
-                                    }
-                            }
+                            dependencyCheck
                             
                             //dependencyCheck additionalArguments: 'cveUrlModified="http://mirror-url/nist/nvdcve-1.1-modified.json.gz"' , 'scan= **/*.war --format HTML', odcInstallation: '7.1.0'
                         }
