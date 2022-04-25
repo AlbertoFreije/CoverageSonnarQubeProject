@@ -30,7 +30,7 @@ pipeline {
                     steps{
                         script{
                             
-                            dependencyCheck additionalArguments: 'scan= **/calculadora-0.1.0.war --format HTML', odcInstallation: '7.1.0'
+                            dependencyCheck additionalArguments: --cveUrlModified="http://mirror-url/nist/nvdcve-1.1-modified.json.gz" , 'scan= **/calculadora-0.1.0.war --format HTML', odcInstallation: '7.1.0'
                         }
                     }       
         }	
