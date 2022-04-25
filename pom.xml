@@ -39,6 +39,12 @@
 			<artifactId>jacoco-maven-plugin</artifactId>
 			<version>0.8.6</version>
 		</dependency>
+		<dependency>
+		  <groupId>org.owasp</groupId>
+		  <artifactId>dependency-check-maven</artifactId>
+		  <version>7.1.0</version>
+		  <type>maven-plugin</type>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
