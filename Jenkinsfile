@@ -26,6 +26,16 @@ pipeline {
 				}
 			}
 		}
+        stage("OWASP"){
+                    steps{
+                        script{
+
+                            dependencyCheck
+                            
+                            //dependencyCheck additionalArguments: 'cveUrlModified="http://mirror-url/nist/nvdcve-1.1-modified.json.gz"' , 'scan= **/*.war --format HTML', odcInstallation: '7.1.0'
+                        }
+                    }       
+        }	
         stage("deploy-Tomcat"){
                     steps{
                         script{
